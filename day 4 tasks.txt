@@ -1,0 +1,100 @@
+////////////////////
+//////Task 1////////
+////////////////////
+
+let obj1 = { name: "person1", age: 5 };
+let obj2 = { age: 5, name: "person1" };
+
+function isEqual(a, b) {
+    let aStr = JSON.stringify(a);
+    let bStr = JSON.stringify(b);
+    return aStr === bStr;
+}
+
+if (isEqual(obj1, obj2)) {
+    console.log("Both objects are equal");
+} else {
+    console.log("Objects are not equal");
+}
+
+///////////////////
+//////Task 3///////
+///////////////////
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="script.js"></script>
+</body>
+</html>
+
+////Know the js part of code
+
+var request=new XMLHttpRequest();
+//Step:02 Initate a request/oPEN mETHOD
+//To have the interaction with the servers via api
+//Which APi is supposed to take
+//2 IMPORTANT PARAM,1ST http METHOD,2nd parameter :API URL
+request.open("GET","https://restcountries.com/v2/all");
+//3.Reqquest.send
+//it is a bridge that established connectuion between images
+request.send();
+//4th step :
+//Once the data successfully loaded from the server 
+//200 
+//it has to be rendered in console
+//Onload is anevent,
+//this event will be triggered,when only data is there in server
+//Once the data successfully loaded from the server
+//the data coming from the server is of type string
+//to convert String to Object we need JSON.parse();
+//String to Object Conversion
+request.onload=function(){
+var result=JSON.parse(request.response);
+console.log(result);
+}
+
+
+// XMLHTTPREQUEST is an browser api
+var request = new XMLHttpRequest();
+
+request.open("GET", "https://restcountries.com/v3.1/all")
+request.send();
+
+// GET THE RESPONSE FROM SERVER
+request.onload = function () {
+    var data = JSON.parse(this.responseText);
+    printData(data);
+}
+
+
+function printData(data) {
+    if(data.length > 0) {
+       for(let i= 0; i < data.length; i++) {
+           const { name = {}, region = '', subregion = '', population = 0 }  = data[i];
+           console.log(name.common, region, subregion, population);
+       }
+    }
+}
+
+/* fetch('https://restcountries.com/v3.1/all')
+.then((response) => response.json())
+.then((res) => printData(res)); */
+
+
+These above code will execute and show the array as 250 and I can print all the countries names, regions, sub-region and populations.
+
+
+
+  
+  
+
+
+
+
